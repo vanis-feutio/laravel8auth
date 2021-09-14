@@ -9,6 +9,7 @@ use App\Exports\EmployeeExport;
 use Excel;
 use Maatwebsite\Excel\Excel as ExcelExcel;
 use Maatwebsite\Excel\Facades\Excel as FacadesExcel;
+use App\Imports\EmployeeImport;
 
 class EmployeeController extends Controller
 {
@@ -32,5 +33,16 @@ class EmployeeController extends Controller
     public function exportInToCSV()
     {
         return Excel::download(new EmployeeExport,'employees.csv');
+    }
+
+    public function importForm()
+    {
+        return view('import-form');
+    }
+
+    public function import(Request $request)
+    {
+        Excel::import(new EmployeeImport, $request->file);
+        return "Record are imported successfully";
     }
 }

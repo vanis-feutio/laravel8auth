@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,9 @@ Route::get('/add-employee',[EmployeeController::class,'addEmployee']);
 
 Route::get('/export-excel',[EmployeeController::class,'exportInToExcel']);
 Route::get('/export-csv',[EmployeeController::class,'exportInToCSV']);
+
+Route::get('/resize-image',[ImageController::class,'resizeImage']);
+Route::post('/resize-image',[ImageController::class,'resizeImageSumit'])->name('image.resize');
+
+Route::get('/import-form',[EmployeeController::class,'importForm']);
+Route::post('/import',[EmployeeController::class,'import'])->name('employee.import');

@@ -17,5 +17,33 @@
     5.puis taper la commande php artisan make:export EmployeeExport --model=App\Models\Employee; puis editer le fichier app/Exports/EmployeeExport.php
     qui doit se creer.
 
-//pour exporter les informations en php
+//pour le Resize Image
+    1. composer require intervention/image
 
+    2. Dans le fichier config/app.php, ajouter la ligne \Intervention\Image\ImageServiceProvider::class, dans le tableau 'providers'
+    et on ajoute 'Image' => \Intervention\Image\Facades\Image::class, dans le tableau 'aliases'
+
+    3. puis on tape la commande php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLaravelResent"
+
+    4. creation et edition du controller(php artisan make:controller ImageController)
+
+// pour importer les informations dans excel
+    1. composer require maatwebsite/excel (pour que ca marche il faut decommenter la ligne ;extension=gd dans le fichier php.ini)
+
+    2. Dans le fichier config/app.php, ajouter la ligne \Maatwebsite\Excel\ExcelServiceProvider::class, dans le tableau 'providers'
+    et on ajoute 'Excel' => \Maatwebsite\Excel\Facades\Excel::class, dans le tableau 'aliases'
+
+    3. puis on tape la commande php artisan vendor:publish --provider="maatwebsite\Excel\ExcelServiceProvider"
+
+    4. puis on ecrit la fonction qui recupere les informations a exporter dans le model en question(Employee dans notre cas)
+
+    5.puis taper la commande php artisan make:import Employeeimport --model=Employee; puis editer le fichier app/imports/Employeeimport.php
+    qui doit se creer.
+
+//utilisation du sweetalert
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        swal("Message de succès","vous avez validez","error",{
+            button:"OK"
+        });
+    </script>
