@@ -33,3 +33,10 @@ Route::post('/resize-image',[ImageController::class,'resizeImageSumit'])->name('
 
 Route::get('/import-form',[EmployeeController::class,'importForm']);
 Route::post('/import',[EmployeeController::class,'import'])->name('employee.import');
+
+//crud laravel avec ajax
+Route::get('/', 'App\Http\Controllers\LinkController@index');
+Route::post('/links','App\Http\Controllers\LinkController@store');
+Route::get('/links/{id?}','App\Http\Controllers\LinkController@edit');
+Route::put('/links/{id?}','App\Http\Controllers\LinkController@update');
+Route::delete('/links/{id?}', 'App\Http\Controllers\LinkController@destroy');
